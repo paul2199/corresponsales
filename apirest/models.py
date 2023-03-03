@@ -7,11 +7,11 @@ class Post(models.Model):
 
 class propietario(models.Model):
     codigo = models.CharField(max_length= 255)
-    nombre = models.TextField ()
-    apellido = models.TextField ()
-    cedula = models.TextField ()
-    usuario = models.TextField ()
-    contrasena = models.TextField ()
+    nombre = models.CharField(max_length=255)
+    apellido = models.CharField(max_length=255)
+    cedula = models.CharField(max_length=255)
+    usuario = models.CharField(max_length=255)
+    contrasena = models.CharField(max_length=255)
 
 class corresponsales(models.Model):
     codigo = models.CharField(max_length=255)
@@ -34,8 +34,8 @@ class cobros(models.Model):
 class factura(models.Model):
     codigo= models.CharField(max_length=255)
     codigo_cliente= models.ForeignKey('cliente',on_delete=models.CASCADE)
-    local= models.TextField()
-    punto = models.TextField()
+    local= models.CharField(max_length=255)
+    punto = models.CharField(max_length=255)
     numero = models.CharField(max_length=100)
     saldo = models.DecimalField(max_digits=4, decimal_places=4)
     observacion = models.TextField()
@@ -43,38 +43,38 @@ class factura(models.Model):
 
 class cliente(models.Model):
     codigo = models.CharField(max_length=50)
-    cedula= models.TextField()
-    cliente= models.TextField()
-    servicio = models.TextField()
+    cedula= models.CharField(max_length=50)
+    cliente= models.CharField(max_length=255)
+    servicio = models.CharField(max_length=255)
     codigo_estado = models.ForeignKey('estado',on_delete=models.CASCADE)
 
 class contrato_cabecera(models.Model):
-    codigo = models.TextField()
-    numero_contrato= models.TextField()
+    codigo = models.CharField(max_length= 255)
+    numero_contrato= models.CharField(max_length= 255)
     fecha = models.DateField()
 
 class plan_velocidad(models.Model):
-    codigo = models.TextField()
+    codigo = models.CharField(max_length= 255)
     descripcion= models.TextField()
     velocidad= models.IntegerField()
     estado= models.ForeignKey('estado',on_delete=models.CASCADE)
 
 
 class contrato_detalle(models.Model):
-    codigo_detalle = models.TextField()
+    codigo_detalle = models.CharField(max_length= 255)
     codigo_cabecera= models.ForeignKey('contrato_cabecera',on_delete=models.CASCADE)
     codigo_producto=models.ForeignKey('producto',on_delete=models.CASCADE) 
     codigo_estado= models.ForeignKey('estado',on_delete=models.CASCADE)
 
 class producto(models.Model):
-    codigo = models.TimeField()
+    codigo = models.CharField(max_length= 255)
     descripcion = models.TextField()
     codigo_estado = models.ForeignKey('estado',on_delete=models.CASCADE)
     precio = models.IntegerField()
     codigo_plan_velocidad = models.ForeignKey('plan_velocidad',on_delete=models.CASCADE)
 
 class localidad(models.Model):
-    codigo = models.TextField()
+    codigo = models.CharField(max_length= 255)
     direccion= models.TextField()
     referencia = models.TextField()
     codigo_estado= models.ForeignKey('estado',on_delete=models.CASCADE)
@@ -82,12 +82,12 @@ class localidad(models.Model):
     longitud = models.FloatField()
 
 class estado(models.Model):
-    codigo = models.TextField()
+    codigo = models.CharField(max_length= 255)
     estado_descripcion = models.TextField()
-    estado_vigencia = models.TextField()
+    estado_vigencia = models.CharField(max_length= 255)
 
 class telefono_localidad(models.Model):
-    codigo = models.TextField()
-    telefono = models.TextField()
+    codigo = models.CharField(max_length= 255)
+    telefono = models.CharField(max_length= 255)
     codigo_estado = models.ForeignKey('estado',on_delete=models.CASCADE)
     codigo_localidad = models.ForeignKey('localidad',on_delete=models.CASCADE)
